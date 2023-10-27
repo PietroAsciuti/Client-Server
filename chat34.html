@@ -65,9 +65,7 @@ span.psw {
      width: 100%;
   }
  
-#server{
-  display: none;
-}
+
 
 }
 </style>
@@ -77,6 +75,7 @@ span.psw {
 <!--<h2>Login Form</h2>
 
 <form action="" method="post">-->
+ <div id="info">
   <div class="imgcontainer">
     <img src="user.png" alt="Avatar" class="avatar">
   </div>
@@ -97,11 +96,14 @@ span.psw {
   <div class="container" style="background-color:#f1f1f1">
     <button type="button" class="cancelbtn">Cancel</button>
     <span class="psw">Forgot <a href="#">password?</a></span>
+  
+ </div>
   </div>
 <!--</form>-->
 </span>
 
 <div id="server">
+  <textarea id="ricezione" readonly></textarea><br/>
   <input id="msg" type="text" />
   <button onClick="inviaAlServer()">invia!</button>
   <button onClick="chiudiLaConnessione()">chiudi</button>
@@ -109,17 +111,21 @@ span.psw {
 </div>
 <script>
   "use strict"
-  
+  const nascondosotto=document.getElementById("server").hidden=true
 function aprischedanuova(){
 
-const element=document.getElementById("server").innerText="sei loggato";
+  const nascondosotto=document.getElementById("server").hidden=false;
+  const nascondosopra=document.getElementById("info").hidden=true;
+
 
 //websocket
+//-----------------------------------
+
 function gestoreRicezione(messaggio){
     document.getElementById("ricezione").textContent += messaggio.data + "\n"; // [1]
   }
 
-  let ws = new WebSocket("ws://esempio.org/wschat/chat"); // [2]
+  let ws = new WebSocket("ws://10.1.0.52:8080/serverchat/chat5i2"); // [2]
   ws.onmessage = gestoreRicezione;
 
   function inviaAlServer(){
@@ -129,8 +135,11 @@ function gestoreRicezione(messaggio){
   function chiudiLaConnessione(){
     ws.close();  // [4]
   }
+//--------------------------------------
 
 }
+
+
 </script>
 </body>
 
