@@ -85,7 +85,7 @@ span.psw {
     <input id="nome" type="text" placeholder="Enter Username" >
 
     <label ><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" >
+    <input id="segreto" type="password" placeholder="Enter Password" >
 
     <button onclick="aprischedanuova()" type="submit">Login</button>
     <label>
@@ -94,7 +94,7 @@ span.psw {
   </div>
 
   <div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="cancelbtn">Cancel</button>
+    <button  onclick="cancellasezioni()" type="button" class="cancelbtn">Cancel</button>
     <span class="psw">Forgot <a href="#">password?</a></span>
   
  </div>
@@ -111,13 +111,28 @@ span.psw {
 </div>
 <script>
   "use strict"
+  
+  //nasconde la parte sotto
   const nascondosotto=document.getElementById("server").hidden=true
+//-------------------------------------
+
+  //login e copro parte sopra
+
 function aprischedanuova(){
 
+  const userr=document.getElementById("nome").value;
+  const nome="giulio";
+  
+const pass=document.getElementById("segreto").value;
+const correctPassword= "password";
+
+  if(pass==correctPassword && nome==userr){
   const nascondosotto=document.getElementById("server").hidden=false;
   const nascondosopra=document.getElementById("info").hidden=true;
-
-
+  }
+  
+  //------------------------------------------
+}
 //websocket
 //-----------------------------------
 
@@ -137,9 +152,14 @@ function gestoreRicezione(messaggio){
   }
 //--------------------------------------
 
+
+function chiudiLaConnessione(){
+  const nascondosotto=document.getElementById("server").hidden=true;
+  const nascondosopra=document.getElementById("info").hidden=false;
 }
+ 
 
-
+ function cancellasezioni(){}
 </script>
 </body>
 
