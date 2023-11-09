@@ -96,8 +96,6 @@ span.psw {
 <body>
 
 <span class="login">
-<!--<h2>Login Form</h2>
-<form action="" method="post">-->
  <div id="info">
   <div class="imgcontainer">
    
@@ -124,7 +122,7 @@ span.psw {
   
  </div>
   </div>
-<!--</form>-->
+
 </span>
 
 <div id="server">
@@ -146,12 +144,10 @@ span.psw {
 function aprischedanuova(){
 
   const userr=document.getElementById("nome").value;
-  const nome="giulio";
   
 const pass=document.getElementById("segreto").value;
-const correctPassword= "c";
 
-  if(pass==correctPassword && nome==userr){
+  if(pass==userr){
   const nascondosotto=document.getElementById("server").hidden=false;
   const nascondosopra=document.getElementById("info").hidden=true;
     ws.send("L"+userr+"|"+pass);
@@ -174,7 +170,12 @@ function gestoreRicezione(messaggio){
 
   function inviaAlServer(){
     let messaggio = document.getElementById("ricezione").value;
-    ws.send(messaggio);  // [3]
+    let usern= document.getElementById("nome").value;
+    let min=1;
+    let max=1000;
+    let n= Math.floor(Math.random()* (max-min +1)+min);
+    ws.send("M"+usern+"|"+n+"|"+messaggio);
+
   }
   function chiudiLaConnessione(){
     ws.close();  // [4] 
