@@ -162,14 +162,18 @@ const pass=document.getElementById("segreto").value;
 
 function gestoreRicezione(messaggio){
     document.getElementById("ricezione").textContent += messaggio.data + "\n"; // [1]
+    
+    
   }
  //"ws://10.1.0.52:8080/serverchat/chat5i2"
 
  let ws = new WebSocket("ws://10.1.0.52:8080/serverchat/chat5i2"); // [2]
   ws.onmessage = gestoreRicezione;
 
+
+
   function inviaAlServer(){
-    let messaggio = document.getElementById("ricezione").value;
+    let messaggio = document.getElementById("msg").value;
     let usern= document.getElementById("nome").value;
     let min=1;
     let max=1000;
