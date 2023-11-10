@@ -1,205 +1,205 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
-form {border: 3px solid #f1f1f1;}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
+  <!-------------------------------------------------------------------------------------->
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-button {
-  background-color: #04AA6D;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
+    form {
+      border: 3px solid #f1f1f1;
+    }
 
-button:hover {
-  opacity: 0.8;
-}
+    input[type=text],
+    input[type=password] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
 
-.cancelbtn {
-  width: auto;
-  padding: 10px 18px;
-  background-color: #f44336;
-}
+    button {
+      background-color: #04AA6D;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
 
-.imgcontainer {
- 
-  /*margin: 3% 0 1% 30%;*/
-  display: flex;
-   align-items: center;
-   justify-content: center;
+    button:hover {
+      opacity: 0.8;
+    }
+
+    .cancelbtn {
+      width: auto;
+      padding: 10px 18px;
+      background-color: #f44336;
+    }
+
+    .imgcontainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    img.avatar {
+      width: 5%;
+      border-radius: 20%;
+      margin-right: 1%;
+
+    }
+
+    .container {
+      padding: 16px;
+    }
+
+    span.psw {
+      float: right;
+      padding-top: 16px;
+    }
+
+
+    @font-face {
+      font-family: Arial, Helvetica, sans-serif;
+
+      src: url(sansation_bold.woff);
+      font-weight: bold;
+    }
+
+    .title {
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+
+    }
+
   
-  
-}
+  </style>
 
- 
-img.avatar {
-  width: 5%;
-  border-radius: 20%;
-margin-right: 1%;
-  
-  
-}
+<!------------------------------------------------------------------------------------------------------->
 
-.container {
-  padding: 16px;
-}
-
-span.psw {
-  float: right;
-  padding-top: 16px;
-}
-
-
-
-@font-face {
-  font-family: Arial, Helvetica, sans-serif;
-  
-  src: url(sansation_bold.woff);
- font-weight:  bold ;
-} 
-
-.title{
-  text-align: center;
-  font-family:Arial, Helvetica, sans-serif;
-
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-  span.psw {
-     display: block;
-     float: none;
-  }
-  .cancelbtn {
-     width: 100%;
-  }
- 
-
-
-}
-</style>
 </head>
+
 <body>
 
-<span class="login">
- <div id="info">
-  <div class="imgcontainer">
-   
-    <img src="user.png" alt="Avatar" class="avatar">
-  
-    <h1 class="title">PANFO COMUNICATOR</h1>
+  <span class="login">
+    <div id="info">
+      <div class="imgcontainer">
+
+        <img src="user.png" alt="Avatar" class="avatar">
+
+        <h1 class="title">PANFO COMUNICATOR</h1>
+      </div>
+
+
+      <div class="container">
+        <label><b>Username</b></label>
+        <input id="nome" type="text" placeholder="Enter Username">
+
+        <label><b>Password</b></label>
+        <input id="segreto" type="password" placeholder="Enter Password">
+
+        <button onclick="aprischedanuova()" type="submit">Login</button>
+
+      </div>
+
+      <div class="container" style="background-color:#f1f1f1">
+        <button onclick="cancellasezioni()" type="button" class="cancelbtn">Cancel</button>
+
+      </div>
+    </div>
+
+  </span>
+
+  <div id="server">
+    <textarea id="ricezione" readonly></textarea><br />
+    <input id="msg" type="text" />
+    <button onClick="inviaAlServer()">invia!</button>
+    <button onClick="chiudiLaConnessione()">chiudi</button>
+
   </div>
 
+<!---------------------------------------------------------------------------------------------------->
 
-  <div class="container">
-    <label ><b>Username</b></label>
-    <input id="nome" type="text" placeholder="Enter Username" >
+  <script>
+    "use strict"
 
-    <label ><b>Password</b></label>
-    <input id="segreto" type="password" placeholder="Enter Password" >
-
-    <button onclick="aprischedanuova()" type="submit">Login</button>
+    //nasconde la parte sotto
+    const nascondosotto = document.getElementById("server").hidden = true
     
-  </div>
 
-  <div class="container" style="background-color:#f1f1f1">
-    <button  onclick="cancellasezioni()" type="button" class="cancelbtn">Cancel</button>
-   
-  
- </div>
-  </div>
+    //login e copro parte sopra
 
-</span>
+    function aprischedanuova() {
 
-<div id="server">
-  <textarea id="ricezione" readonly></textarea><br/>
-  <input id="msg" type="text" />
-  <button onClick="inviaAlServer()">invia!</button>
-  <button onClick="chiudiLaConnessione()">chiudi</button>
-  
-</div>
-<script>
-  "use strict"
-  
-  //nasconde la parte sotto
-  const nascondosotto=document.getElementById("server").hidden=true
-//-------------------------------------
+      const userr = document.getElementById("nome").value;
 
-  //login e copro parte sopra
+      const pass = document.getElementById("segreto").value;
 
-function aprischedanuova(){
-
-  const userr=document.getElementById("nome").value;
-  
-const pass=document.getElementById("segreto").value;
-
-  if(pass==userr){
-  const nascondosotto=document.getElementById("server").hidden=false;
-  const nascondosopra=document.getElementById("info").hidden=true;
-    ws.send("L"+userr+"|"+pass);
+     /* if (pass == userr) {
+        const nascondosotto = document.getElementById("server").hidden = false;
+        const nascondosopra = document.getElementById("info").hidden = true;
+       
 
 
-  }
-  
-  //------------------------------------------
-}
-//websocket
-//-----------------------------------
+      }*/
+       ws.send("L" + userr + "|" + pass);
 
-function gestoreRicezione(messaggio){
-    document.getElementById("ricezione").textContent += messaggio.data + "\n"; // [1]
-    
-    
-  }
- //"ws://10.1.0.52:8080/serverchat/chat5i2"
+      //------------------------------------------
+    }
+    //websocket
+    //-----------------------------------
 
- let ws = new WebSocket("ws://10.1.0.52:8080/serverchat/chat5i2"); // [2]
-  ws.onmessage = gestoreRicezione;
+    function gestoreRicezione(messaggio) {
+      document.getElementById("ricezione").textContent += messaggio.data + "\n"; // [1]
+      if(messaggio="Login OK!"){
+
+      }
+
+
+    }
+    //"ws://10.1.0.52:8080/serverchat/chat5i2"
+
+    let ws = new WebSocket("ws://10.1.0.52:8080/serverchat/chat5i2"); // [2]
+    ws.onmessage = gestoreRicezione;
 
 
 
-  function inviaAlServer(){
-    let messaggio = document.getElementById("msg").value;
-    let usern= document.getElementById("nome").value;
-    let min=1;
-    let max=1000;
-    let n= Math.floor(Math.random()* (max-min +1)+min);
-    ws.send("M"+usern+"|"+n+"|"+messaggio);
+    function inviaAlServer() {
+      let messaggio = document.getElementById("msg").value;
+      let usern = document.getElementById("nome").value;
+      let min = 1;
+      let max = 1000;
+      let n = Math.floor(Math.random() * (max - min + 1) + min);
+      ws.send("M" + usern + "|" + n + "|" + messaggio);
 
-  }
-  function chiudiLaConnessione(){
-    ws.close();  // [4] 
-    const nascondosotto=document.getElementById("server").hidden=true;
-  const nascondosopra=document.getElementById("info").hidden=false;
-  }
-//--------------------------------------
+    }
+    function chiudiLaConnessione() {
+      ws.close();  // [4] 
+      const nascondosotto = document.getElementById("server").hidden = true;
+      const nascondosopra = document.getElementById("info").hidden = false;
+    }
+    //--------------------------------------
 
 
 
- 
 
- function cancellasezioni(){
 
-  const pass=document.getElementById("segreto").value="";
-  const userr=document.getElementById("nome").value="";
+    function cancellasezioni() {
 
- }
-  
-</script>
+      const pass = document.getElementById("segreto").value = "";
+      const userr = document.getElementById("nome").value = "";
+
+    }
+
+  </script>
 </body>
 
 </html>
